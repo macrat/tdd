@@ -188,9 +188,9 @@ Vector3 Vector3::operator %(const Vector3& v) const {
 	auto a = round();
 	auto b = v.round();
 	return {
-		boost::numeric_cast<int64_t>(a.x) % boost::numeric_cast<int64_t>(b.x),
-		boost::numeric_cast<int64_t>(a.y) % boost::numeric_cast<int64_t>(b.y),
-		boost::numeric_cast<int64_t>(a.z) % boost::numeric_cast<int64_t>(b.z)
+		static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x),
+		static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y),
+		static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z)
 	};
 }
 
@@ -198,9 +198,9 @@ Vector3 Vector3::operator %(const Vector3& v) const {
 Vector3& Vector3::operator %=(const Vector3& v) {
 	auto a = round();
 	auto b = v.round();
-	x = boost::numeric_cast<int64_t>(a.x) % boost::numeric_cast<int64_t>(b.x);
-	y = boost::numeric_cast<int64_t>(a.y) % boost::numeric_cast<int64_t>(b.y);
-	z = boost::numeric_cast<int64_t>(a.z) % boost::numeric_cast<int64_t>(b.z);
+	x = static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x);
+	y = static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y);
+	z = static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z);
 	return *this;
 }
 
@@ -208,18 +208,18 @@ Vector3& Vector3::operator %=(const Vector3& v) {
 Vector3 Vector3::operator %(const int& v) const {
 	auto a = round();
 	return {
-		boost::numeric_cast<int64_t>(a.x) % v,
-		boost::numeric_cast<int64_t>(a.y) % v,
-		boost::numeric_cast<int64_t>(a.z) % v
+		static_cast<int64_t>(a.x) % v,
+		static_cast<int64_t>(a.y) % v,
+		static_cast<int64_t>(a.z) % v
 	};
 }
 
 
 Vector3& Vector3::operator %=(const int& v) {
 	auto a = round();
-	x = boost::numeric_cast<int64_t>(a.x) % v;
-	y = boost::numeric_cast<int64_t>(a.y) % v;
-	z = boost::numeric_cast<int64_t>(a.z) % v;
+	x = static_cast<int64_t>(a.x) % v;
+	y = static_cast<int64_t>(a.y) % v;
+	z = static_cast<int64_t>(a.z) % v;
 	return *this;
 }
 
