@@ -188,9 +188,9 @@ Vector3 Vector3::operator %(const Vector3& v) const {
 	auto a = round();
 	auto b = v.round();
 	return {
-		static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x),
-		static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y),
-		static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z)
+		static_cast<double>(static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x)),
+		static_cast<double>(static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y)),
+		static_cast<double>(static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z))
 	};
 }
 
@@ -208,9 +208,9 @@ Vector3& Vector3::operator %=(const Vector3& v) {
 Vector3 Vector3::operator %(const int& v) const {
 	auto a = round();
 	return {
-		static_cast<int64_t>(a.x) % v,
-		static_cast<int64_t>(a.y) % v,
-		static_cast<int64_t>(a.z) % v
+		static_cast<double>(static_cast<int64_t>(a.x) % v),
+		static_cast<double>(static_cast<int64_t>(a.y) % v),
+		static_cast<double>(static_cast<int64_t>(a.z) % v)
 	};
 }
 
