@@ -1,6 +1,9 @@
+#include "cmath"
+
 #include "gtest/gtest.h"
 
 #include "vector3.h"
+
 
 using btar::Vector3;
 
