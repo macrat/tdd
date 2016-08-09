@@ -1,5 +1,9 @@
 #include "vector3.h"
 
+#include <boost/format.hpp>
+#include <cmath>
+#include <iostream>
+
 
 namespace btar {
 
@@ -15,13 +19,13 @@ Vector3 Vector3::pow(const double& v) const {
 
 
 double Vector3::length() const {
-	auto p = pow(2);
+	Vector3 p{pow(2)};
 	return std::sqrt(p.x + p.y + p.z);
 }
 
 
 double Vector3::distance(const Vector3& v) const {
-	auto p = (*this - v).pow(2);
+	Vector3 p{(*this - v).pow(2)};
 	return std::sqrt(p.x + p.y + p.z);
 }
 
@@ -146,7 +150,7 @@ Vector3& Vector3::operator *=(const Vector3& v) {
 
 
 Vector3 Vector3::operator *(const double& v) const {
-	return Vector3(x * v, y * v, z * v);
+	return {x * v, y * v, z * v};
 }
 
 
@@ -185,8 +189,7 @@ Vector3& Vector3::operator /=(const double& v) {
 
 
 Vector3 Vector3::operator %(const Vector3& v) const {
-	auto a = round();
-	auto b = v.round();
+	Vector3 a{round()}, b{v.round()};
 	return {
 		static_cast<double>(static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x)),
 		static_cast<double>(static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y)),
@@ -196,8 +199,7 @@ Vector3 Vector3::operator %(const Vector3& v) const {
 
 
 Vector3& Vector3::operator %=(const Vector3& v) {
-	auto a = round();
-	auto b = v.round();
+	Vector3 a{round()}, b{v.round()};
 	x = static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x);
 	y = static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y);
 	z = static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z);
@@ -206,7 +208,7 @@ Vector3& Vector3::operator %=(const Vector3& v) {
 
 
 Vector3 Vector3::operator %(const int& v) const {
-	auto a = round();
+	Vector3 a{round()};
 	return {
 		static_cast<double>(static_cast<int64_t>(a.x) % v),
 		static_cast<double>(static_cast<int64_t>(a.y) % v),
@@ -216,7 +218,7 @@ Vector3 Vector3::operator %(const int& v) const {
 
 
 Vector3& Vector3::operator %=(const int& v) {
-	auto a = round();
+	Vector3 a{round()};
 	x = static_cast<int64_t>(a.x) % v;
 	y = static_cast<int64_t>(a.y) % v;
 	z = static_cast<int64_t>(a.z) % v;

@@ -1,12 +1,7 @@
 #ifndef __VECTOR3_H__
 #define __VECTOR3_H__
 
-#include <cmath>
-#include <iostream>
 #include <string>
-
-#include <boost/cast.hpp>
-#include <boost/format.hpp>
 
 
 namespace btar {
