@@ -19,19 +19,17 @@ Vector3 Vector3::pow(const double& v) const {
 
 
 double Vector3::length() const {
-	Vector3 p{pow(2)};
-	return std::sqrt(p.x + p.y + p.z);
+	return std::sqrt(x*x + y*y + z*z);
 }
 
 
 double Vector3::distance(const Vector3& v) const {
-	Vector3 p{(*this - v).pow(2)};
-	return std::sqrt(p.x + p.y + p.z);
+	return std::sqrt((x - v.x)*(x - v.x) + (y - v.y)*(y - v.y) + (z - v.z)*(z - v.z));
 }
 
 
 Vector3 Vector3::median(const Vector3& v) const {
-	return (*this + v) / 2.0;
+	return {(x + v.x) / 2.0, (y + v.y) / 2.0, (z + v.z) / 2.0};
 }
 
 
@@ -189,39 +187,35 @@ Vector3& Vector3::operator /=(const double& v) {
 
 
 Vector3 Vector3::operator %(const Vector3& v) const {
-	Vector3 a{round()}, b{v.round()};
 	return {
-		static_cast<double>(static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x)),
-		static_cast<double>(static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y)),
-		static_cast<double>(static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z))
+		static_cast<double>(static_cast<int64_t>(std::round(x)) % static_cast<int64_t>(std::round(v.x))),
+		static_cast<double>(static_cast<int64_t>(std::round(y)) % static_cast<int64_t>(std::round(v.y))),
+		static_cast<double>(static_cast<int64_t>(std::round(z)) % static_cast<int64_t>(std::round(v.z)))
 	};
 }
 
 
 Vector3& Vector3::operator %=(const Vector3& v) {
-	Vector3 a{round()}, b{v.round()};
-	x = static_cast<int64_t>(a.x) % static_cast<int64_t>(b.x);
-	y = static_cast<int64_t>(a.y) % static_cast<int64_t>(b.y);
-	z = static_cast<int64_t>(a.z) % static_cast<int64_t>(b.z);
+	x = static_cast<int64_t>(std::round(x)) % static_cast<int64_t>(std::round(v.x));
+	y = static_cast<int64_t>(std::round(y)) % static_cast<int64_t>(std::round(v.y));
+	z = static_cast<int64_t>(std::round(z)) % static_cast<int64_t>(std::round(v.z));
 	return *this;
 }
 
 
 Vector3 Vector3::operator %(const int& v) const {
-	Vector3 a{round()};
 	return {
-		static_cast<double>(static_cast<int64_t>(a.x) % v),
-		static_cast<double>(static_cast<int64_t>(a.y) % v),
-		static_cast<double>(static_cast<int64_t>(a.z) % v)
+		static_cast<double>(static_cast<int64_t>(std::round(x)) % v),
+		static_cast<double>(static_cast<int64_t>(std::round(y)) % v),
+		static_cast<double>(static_cast<int64_t>(std::round(z)) % v)
 	};
 }
 
 
 Vector3& Vector3::operator %=(const int& v) {
-	Vector3 a{round()};
-	x = static_cast<int64_t>(a.x) % v;
-	y = static_cast<int64_t>(a.y) % v;
-	z = static_cast<int64_t>(a.z) % v;
+	x = static_cast<int64_t>(std::round(x)) % v;
+	y = static_cast<int64_t>(std::round(y)) % v;
+	z = static_cast<int64_t>(std::round(z)) % v;
 	return *this;
 }
 
